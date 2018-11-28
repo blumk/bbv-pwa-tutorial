@@ -1,26 +1,36 @@
 # Progressive Web App Tutorial
 ## Intro
-https://pwa.rocks/
+Take a look at some existing PWAs and test out the following features:
+- add to home screen (smartphone)
+- offline support (-> airplane mode)
+- hardware access (qr code scanner)
+- performance (time to load/open app)
+- install on desktop (chrome 70, windows)
 
-https://www.progressivewebflap.com/
-https://qrcodescan.in/
 
+Sample PWAs: 
+- [Showcases](https://pwa.rocks/)
+- [Timer](https://polytimer.rocks/)
+- [QR-Code scanner](https://qrcodescan.in/)
 
-## Setup Ionic 4 / Angular 7 project
+Did you notice any differences compared to native apps?
+
+## Build your own PWA
+Make sure you have the latest Ionic CLI installed (4.4.0). This tutorial will guide you through the setup of a PWA using Ionic 4 / Angular 7.
 1. `ionic start pwa-demo sidemenu --type=angular`
-    
-    _skip installing Ionic Pro SDK_
 
-    Docs: https://beta.ionicframework.com/docs/installation/cli
+    _(skip the Ionic Pro SDK installation)_
+
+    Further information on the Ionic CLI, [see documentation](https://beta.ionicframework.com/docs/installation/cli)
 
 2. Go to `pwa-demo` directory and install dependencies with `npm i`
 
 3. Run `ionic serve`
 
-4. Open Chrome Dev tools and run a (Lighthouse) `Audit` 
+4. Open Chrome Dev tools and run a Lighthouse audit by clicking on the `Audit` tab.
 
 
-## Add service worker
+## Add a service worker
 
 1. `ng add @angular/pwa --project app`
     - Creates the configuration file for the service worker
@@ -30,7 +40,7 @@ https://qrcodescan.in/
     - Imports the service worker functionality into the root module file
     - Adds the required meta tags to the index.html file
 
-2. `ionic serve` and run Audit again.
+2. `ionic serve` and run the Lighthouse audit again.
 
 3. Running production build:
     - Install http-server `npm install serve -g`
@@ -39,24 +49,26 @@ https://qrcodescan.in/
     - Open `http://localhost:8080`. Chrome Dev Tools `Application` shows a running service worker
 
 4. Testing on device:
- - `npm install -g localtunnel`
- - Open tunnel: `lt -p 8080` (custom domain with `-s`)
- - Add App to home screen
- - Test app from Airplane mode
+    - `npm install -g localtunnel`
+    - Open tunnel: `lt -p 8080` (custom domain with `-s`)
+    - Add App to home screen
+    - Test app from Airplane mode
 
 
 ## App Manifest
-Update the app using a manifest generator:
-https://app-manifest.firebaseapp.com/
+Improve the app user experience by modifing the `manifest.json` using a [manifest generator](
+https://app-manifest.firebaseapp.com/).
 
-=> Dispay Mode (standalone, fullscreen, ...)
-=> Orientation
-=> Start URL
+Experiment with the following settings:
+- Dispay Mode (standalone, fullscreen, ...)
+- Orientation
+- Start URL
+
 
 ## Push Notifications
 
-Test web push notifications on your device:
-https://gauntface.github.io/simple-push-demo/
+Test web push notifications on your device by using this
+[example PWA](https://gauntface.github.io/simple-push-demo/).
 
 
 
