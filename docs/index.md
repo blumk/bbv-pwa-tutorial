@@ -12,6 +12,7 @@ Sample PWAs:
 - [Showcases](https://pwa.rocks/)
 - [Timer](https://polytimer.rocks/)
 - [QR-Code scanner](https://qrcodescan.in/)
+- [bbv Planning Poker](https://bbv-poker.netlify.com/)
 
 Did you notice any differences compared to native apps?
 
