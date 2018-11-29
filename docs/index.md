@@ -12,12 +12,12 @@ Sample PWAs:
 - [Showcases](https://pwa.rocks/)
 - [Timer](https://polytimer.rocks/)
 - [QR-Code scanner](https://qrcodescan.in/)
-- [bbv Planning Poker](https://bbv-poker.netlify.com/)
+- [bbv Planning Poker](https://bbv-poker.netlify.com/) vs App Store version
 
 Did you notice any differences compared to native apps?
 
 ## Build your own PWA
-Make sure you have the latest Ionic CLI installed (4.4.0). This tutorial will guide you through the setup of a PWA using Ionic 4 / Angular 7.
+Make sure you have the latest Ionic CLI installed (4.5.0). This tutorial will guide you through the setup of a PWA using Ionic 4 / Angular 7.
 1. `ionic start pwa-demo sidemenu --type=angular`
 
     _(skip the Ionic Pro SDK installation)_
@@ -49,11 +49,18 @@ Make sure you have the latest Ionic CLI installed (4.4.0). This tutorial will gu
     - Start http-server with `serve www -l 8080 --single` (`--single` is required for angular routing)
     - Open `http://localhost:8080`. Chrome Dev Tools `Application` shows a running service worker
 
-4. Testing on device:
-    - `npm install -g localtunnel`
-    - Open tunnel: `lt -p 8080` (custom domain with `-s`)
-    - Add App to home screen
-    - Test app from Airplane mode
+4. Cache *.svg icons:
+    - Icons are missing in offline mode - we need to cache them
+    - Configure service worker by editing `ngsw-config.json`
+    - `prefetch` or `lazy`? 
+    - [see Angular docs](https://angular.io/guide/service-worker-intro)
+    - Verify SW version: `http://localhost:8080/ngsw/state`
+
+### Testing on device with localtunnel
+- `npm install -g localtunnel`
+- Open tunnel: `lt -p 8080` (custom domain with `-s`)
+- Add App to home screen
+- Test app from Airplane mode
 
 
 ## App Manifest
@@ -70,6 +77,11 @@ Experiment with the following settings:
 
 Test web push notifications on your device by using this
 [example PWA](https://gauntface.github.io/simple-push-demo/).
+
+
+[Ionic PWA Toolkit](https://ionicframework.com/pwa/toolkit)
+
+`npx create-stencil ionic-pwa`
 
 
 
