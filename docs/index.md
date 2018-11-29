@@ -1,3 +1,10 @@
+# Electron
+Quick demo using [Nativefier](https://github.com/jiahaog/nativefier):
+
+`npm install nativefier -g`
+
+`nativefier --name "bbv.ch" "https://bbv.ch"`
+
 # Progressive Web App Tutorial
 ## Intro
 Take a look at some existing PWAs and test out the following features:
@@ -84,4 +91,94 @@ Test web push notifications on your device by using this
 `npx create-stencil ionic-pwa`
 
 
+# Ionic Capacitor
+## Intro
+>Invoke Native SDKs on iOS, Android, Electron, and the Web with one code base. Optimized for Ionic Framework apps, or use with any web app framework.
+[Capacitor Website](https://capacitor.ionicframework.com/)
 
+## Getting started
+- Install [dependencies](https://capacitor.ionicframework.com/docs/getting-started/dependencies)
+- Add [capacitor](https://capacitor.ionicframework.com/docs/getting-started/with-ionic) to your project:
+
+    `npm install --save @capacitor/core @capacitor/cli`
+
+    `npx cap init`
+
+- Run it as a PWA: 
+
+    `ionic build --prod`
+
+    `npx cap serve`
+
+
+- Add native support
+
+    `npx cap add ios` or
+    `npx cap add android`
+
+    `npx cap open ios` or
+    `npx cap open android`
+
+### GeoLocation Example
+- Add a button to `home.page.html`
+```
+<ion-button (click)="showAlert()" [disabled]="isLoading">Show Position</ion-button>
+````
+
+- Load the Postion and show a modal dialog
+
+    _use firefox/safari, chrome will throw an error message_
+```
+import { Component } from '@angular/core';
+
+import { Plugins } from '@capacitor/core';
+
+const { Geolocation, Modals } = Plugins;
+
+@Component({
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+})
+export class HomePage {
+  isLoading = false;
+
+  showAlert() {
+    this.isLoading = true;
+
+    Geolocation.getCurrentPosition()
+    .then(result => {
+      console.log(result);
+      if (!result || !result.coords) { return; }
+
+      const lat = result.coords.latitude;
+      const long = result.coords.longitude;
+
+      Modals.alert({
+        title: 'Your position:',
+        message: `Lat: ${lat} Long: ${long}`
+      });
+
+    }).catch(err => console.error(err))
+    .finally(() => {
+      this.isLoading = false;
+    });
+  }
+}
+
+```
+
+
+## Publish as an Electron app
+- Add electron
+
+    `npx cap add electron` 
+
+    `npm i -g electron-packager`
+
+
+- cd into `electron` directory
+
+    MacOS `electron-packager . --platform=darwin`
+
+    Windows: `electron-packager . --platform=win32`
